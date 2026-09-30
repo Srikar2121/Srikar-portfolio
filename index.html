@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Srikar — AI & Web Developer</title>
+  <meta
+    name="description"
+    content="Srikar's personal portfolio — building AI, web experiences and ambitious ideas."
+  />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: #fff;
+      background: #050505;
+      overflow-x: hidden;
+    }
+
+    /* ---------- BACKGROUND ---------- */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(120, 70, 255, .18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0, 180, 255, .13), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(180, 40, 255, .12), transparent 30%),
+        #050505;
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+
+    .orb {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .13;
+      pointer-events: none;
+      z-index: -3;
+    }
+
+    .orb.one {
+      background: #7c3aed;
+      top: -150px;
+      left: -150px;
+      animation: float1 12s ease-in-out infinite;
+    }
+
+    .orb.two {
+      background: #06b6d4;
+      right: -180px;
+      top: 35%;
+      animation: float2 15s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      50% {
+        transform: translate(100px, 120px);
+      }
+    }
+
+    @keyframes float2 {
+      50% {
+        transform: translate(-100px, -80px);
+      }
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 850px);
+      padding: 12px 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(15, 15, 18, .65);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+
+      border-radius: 18px;
+      z-index: 100;
+      box-shadow: 0 15px 50px rgba(0,0,0,.25);
+    }
+
+    .logo {
+      font-family: "Space Grotesk";
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 6px;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      transition: .25s;
+    }
+
+    nav a:hover {
+      color: white;
+      background: rgba(255,255,255,.07);
+    }
+
+    /* ---------- GENERAL ---------- */
+
+    section {
+      width: min(1100px, 90%);
+      margin: auto;
+      padding: 120px 0;
+    }
+
+    .eyebrow {
+      color: #a78bfa;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-family: "Space Grotesk";
+      font-size: clamp(38px, 6vw, 64px);
+      letter-spacing: -3px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .muted {
+      color: #999;
+      line-height: 1.8;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 150px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      border-radius: 100px;
+      color: #bbb;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #4ade80;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk";
+      font-size: clamp(65px, 11vw, 125px);
+      letter-spacing: -8px;
+      line-height: .88;
+      margin-bottom: 30px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        100deg,
+        #fff 10%,
+        #a78bfa 45%,
+        #38bdf8 80%
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      max-width: 620px;
+      font-size: 18px;
+      color: #a5a5a5;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .btn-primary {
+      color: #050505;
+      background: white;
+      box-shadow: 0 0 30px rgba(255,255,255,.08);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px rgba(255,255,255,.15);
+    }
+
+    .btn-secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* ---------- ABOUT ---------- */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .age-card {
+      position: relative;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 30px;
+      background: rgba(255,255,255,.035);
+      overflow: hidden;
+    }
+
+    .age-card::before {
+      content: "";
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: #7c3aed;
+      filter: blur(90px);
+      opacity: .25;
+    }
+
+    .age-number {
+      position: relative;
+      font-family: "Space Grotesk";
+      font-size: 150px;
+      font-weight: 700;
+      letter-spacing: -12px;
+    }
+
+    .age-label {
+      position: absolute;
+      bottom: 28px;
+      color: #999;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ---------- PROJECT ---------- */
+
+    .project-card {
+      position: relative;
+      padding: 45px;
+      border-radius: 30px;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(124,58,237,.12),
+          rgba(14,165,233,.04)
+        ),
+        rgba(255,255,255,.035);
+
+      border: 1px solid rgba(255,255,255,.1);
+      transition: .4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(167,139,250,.35);
+      box-shadow: 0 25px 80px rgba(0,0,0,.3);
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      border: 1px solid rgba(167,139,250,.18);
+      box-shadow:
+        0 0 0 35px rgba(167,139,250,.04),
+        0 0 0 70px rgba(167,139,250,.025);
+    }
+
+    .project-icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg,#7c3aed,#2563eb);
+      box-shadow: 0 0 35px rgba(124,58,237,.3);
+      font-size: 24px;
+      margin-bottom: 28px;
+    }
+
+    .project-card h3 {
+      font-family: "Space Grotesk";
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .project-card p {
+      color: #999;
+      max-width: 650px;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 11px;
+      font-size: 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.07);
+      color: #bbb;
+    }
+
+    /* ---------- CONTACT ---------- */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-link {
+      color: white;
+      text-decoration: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      transition: .3s;
+      font-size: 14px;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,.08);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      width: min(1100px, 90%);
+      margin: auto;
+      padding: 30px 0 45px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* ---------- REVEAL ---------- */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 700px) {
+
+      nav {
+        width: 94%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      section {
+        padding: 90px 0;
+      }
+
+      .hero h1 {
+        font-size: 65px;
+        letter-spacing: -5px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .age-card {
+        min-height: 250px;
+      }
+
+      .age-number {
+        font-size: 110px;
+      }
+
+      .project-card {
+        padding: 28px;
+      }
+
+      .project-card h3 {
+        font-size: 30px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+  <div class="grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Srikar<span>.</span></div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-content reveal">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          Building something cool
+        </div>
+
+        <h1>
+          Hey, I'm<br />
+          <span class="gradient-text">Srikar.</span>
+        </h1>
+
+        <p>
+          A 13-year-old builder exploring AI, software and the web —
+          turning random ideas into things that actually exist.
+        </p>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">
+            Explore my work →
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="https://github.com/Srikar2121"
+            target="_blank"
+          >
+            GitHub ↗
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="about-grid">
+
+        <div class="age-card reveal">
+          <div class="age-number">13</div>
+          <div class="age-label">Years old · Builder</div>
+        </div>
+
+        <div class="reveal">
+
+          <div class="eyebrow">01 — About</div>
+
+          <h2>
+            Young mind.<br />
+            Big ideas.
+          </h2>
+
+          <p class="muted">
+            I'm Srikar — a developer who enjoys experimenting with
+            AI, websites and technology. I like taking an idea,
+            messing around with it, and turning it into something
+            people can actually use.
+          </p>
+
+          <br />
+
+          <p class="muted">
+            Right now, I'm working on
+            <strong style="color:white;">OrbitIntelligenceAI</strong>
+            and exploring what's possible with AI and modern web
+            technology.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+
+      <div class="eyebrow reveal">02 — Featured project</div>
+
+      <h2 class="reveal">
+        What I'm building.
+      </h2>
+
+      <br />
+
+      <div class="project-card reveal">
+
+        <div class="project-icon">✦</div>
+
+        <h3>OrbitIntelligenceAI</h3>
+
+        <p>
+          An AI-focused project built to explore intelligent,
+          useful and modern software experiences. This is where
+          I'm experimenting with ideas around AI and the future
+          of software.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Artificial Intelligence</span>
+          <span class="tag">Web</span>
+          <span class="tag">Software</span>
+          <span class="tag">Innovation</span>
+        </div>
+
+        <br />
+
+        <!-- Replace # with your actual project URL -->
+        <a href="#" class="btn btn-secondary">
+          View project ↗
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+
+      <div class="eyebrow reveal">03 — Contact</div>
+
+      <h2 class="reveal">
+        Let's build something.
+      </h2>
+
+      <p class="muted reveal">
+        Got an idea, project or just want to say hey?
+        Find me around the internet.
+      </p>
+
+      <div class="contact-links reveal">
+
+        <a
+          class="contact-link"
+          href="https://github.com/Srikar2121"
+          target="_blank"
+        >
+          GitHub · @Srikar2121
+        </a>
+
+        <a
+          class="contact-link"
+          href="mailto:challavankatasrikar21@gmail.com"
+        >
+          Email me
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Srikar</span>
+    <span>Built with curiosity ✦</span>
+  </footer>
+
+
+  <!-- ANIMATION -->
+  <script>
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => observer.observe(el));
+
+  </script>
+
+</body>
+</html>
