@@ -16,7 +16,7 @@ An AI-focused project exploring intelligent software and modern web experiences.
 
 ## 🌐 Live Website
 
-https://srikar2121.github.io/
+https://orbitintelligenceai.lovable.app/
 
 ## 👨‍💻 About Me
 
